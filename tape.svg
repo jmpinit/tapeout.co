@@ -1,0 +1,125 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="200" height="120" viewBox="0 0 200 200" preserveAspectRatio="xMinYMin slice" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+<style type="text/css">
+    svg {
+        stroke-linecap: round;
+        stroke-width: 1;
+        stroke: white;
+        fill: none;
+    }
+
+    text {
+        fill: white;
+        stroke: white;
+        stroke-width: 0.5;
+        font-size: 6px;
+        font-family: "Franklin Gothic Medium";
+    }
+
+    a {
+        fill: white;
+        stroke: white;
+        stroke-width: 0.5;
+        font-size: 6px;
+        font-family: "Franklin Gothic Medium";
+    }
+
+    #guard {
+        fill: black;
+    }
+
+    #rw-assembly {
+        fill: black;
+    }
+</style>
+<defs>
+    <path id="label-path" d="
+    M -21 21
+    A 30 30 0 0 0 21 21
+    "/>
+</defs>
+<g id="reel-bottom" class="reel" transform="translate(50,50)">
+    <circle id="tape" r="15"/>
+    <circle r="10"/>
+    <circle r="40"/>
+    <g id="guard">
+        <path d="
+        M -30 -10
+        A 10 10 0 0 0 -30 10
+        L 30 10
+        A 10 10 0 0 0 30 -10
+        L -30 -10
+        "/>   
+    </g>
+    <text fill="black" letter-spacing="1.5">
+        <textPath xlink:href="#label-path" startoffset="50%">
+            tapeout co.
+        </textPath>
+    </text>
+</g>
+<g id="reel-top" class="reel" transform="translate(150,50)">
+    <circle r="10"/>
+    <polyline points="0,-15 -2,-15 -5,-35 5,-35, 2,-15, 0,-15"/>
+    <polyline transform="rotate(120)" points="0,-15 -2,-15 -5,-35 5,-35, 2,-15, 0,-15"/>
+    <polyline transform="rotate(240)" points="0,-15 -2,-15 -5,-35 5,-35, 2,-15, 0,-15"/>
+    <text fill="black" letter-spacing="1.5">
+        <textPath xlink:href="#label-path" startoffset="50%">
+            from <a href="https://owentrueblood.com">owen</a>
+        </textPath>
+    </text>
+    <path id="label-outline" d="
+
+    "/>
+    <circle r="40"/>
+</g>
+<path id="tape" d="
+M 150 90
+L 100 96
+L 100 90
+L 94 86
+L 50 90
+"/>
+<g id="rw-assembly" transform="translate(100,90)">
+    <g transform="translate(0,6) rotate(-45)">
+        <circle cx="0" cy="-10" r="3"/>
+        <line x1="0" y1="0" x2="0" y2="-10" stroke-width="4"/>
+    </g>
+    <path d="
+    M 2 -2
+    A 5 5 0 0 0 -2 -2
+    L -12 8 
+    A 5 5 0 0 0 -8 12
+    L 8 12
+    A 5 5 0 0 0 12 8
+    L 2 -2
+    "/>
+</g>
+<g id="decoration">
+    <path id="in-between" d="
+    M 0 -30
+    L -13 -30
+    A 5 5 0 0 0 -15 -28
+    M -15 28
+    A 45 45 0 0 0 -15 -28
+    M -15 28
+    A 5 5 0 0 0 -13 30
+    L 0 30
+    L 13 30
+    A 5 5 0 0 0 15 28
+    M 15 -28
+    A 45 45 0 0 0 15 28
+    M 15 -28
+    A 5 5 0 0 0 13 -30
+    L 0 -30
+    " transform="translate(100,50)"/>
+    <circle transform="translate(45,95)" r="1"/>
+    <circle transform="translate(155,95)" r="1"/>
+    <circle transform="translate(15,15)" r="1"/>
+    <circle transform="translate(185,15)" r="1"/>
+
+    <circle transform="translate(85,15)" r="1"/>
+    <circle transform="translate(115,15)" r="1"/>
+    <circle transform="translate(85,85)" r="1"/>
+    <circle transform="translate(115,85)" r="1"/>
+</g>
+</svg>

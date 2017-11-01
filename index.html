@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tapeout</title>
+
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Carrois+Gothic+SC);
+
+            all {
+                stroke-color: white;
+                fill: white;
+            }
+
+            body {
+                background-color: black;
+                font-family: "Franklin Gothic Medium"
+                color: white;
+            }
+
+            .content {
+                width: 75%;
+                margin: 0 auto;
+            }
+
+            #tape {
+                width: 100%;
+                height: 100%;
+            }
+
+            #pcb {
+                width: 100%;
+            }
+
+h1 {
+  font-family: sans-serif;
+  color: white;
+}
+
+h2 {
+  font-family: sans-serif;
+  color: white;
+}
+
+a:link {
+      text-decoration: none;
+      text-decoration: underline;
+  color: white;
+}
+
+a:visited {
+      text-decoration: none;
+  color: white;
+}
+
+a:hover {
+      text-decoration: underline;
+  color: white;
+}
+
+a:active {
+      text-decoration: underline;
+  color: white;
+}
+        </style>
+    </head>
+    <body>
+        <div id="machine" class="content">
+            <img id="tape" src="tape.svg"></img>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            d3.xml("tape.svg", "image/svg+xml", function (xml) {
+                var tapeNode = d3.select("#tape")[0][0];
+                var container = tapeNode.parentNode;
+                d3.select(xml.documentElement).attr("id", "tape");
+                container.replaceChild(xml.documentElement, tapeNode);
+
+                var tape = d3.select("#tape");
+                var reels = tape.selectAll(".reel");
+
+                function rotate (transition, degrees) {
+                    transition.attr("transform", function () {
+                        var n = d3.select(this);
+                        var t = d3.transform(n.attr("transform"))
+                        t.rotate = degrees;
+                        return t.toString();
+                    });
+                }
+
+                function repeat (transition, next) {
+                    transition.each("end", function () {
+                        d3.select(this)
+                            .transition()
+                            .call(next)
+                            .call(repeat, next)
+                    });
+                }
+
+                function jog () {
+                    var degrees = 360 * Math.random();
+                    var count = 0;
+
+                    var getSeekTime = d3.random.irwinHall(10);
+
+                    reels.transition()
+                        .ease("linear")
+                        .call(rotate, degrees)
+                        .duration(1000 * getSeekTime())
+                        .each("end", function () {
+                            count++;
+                            if (count == 2)
+                                jog();
+                        });
+                }
+
+                jog();
+            });
+        </script>
+        <script>
+          document.body.onclick = function () {
+            window.location.href = 'https://owentrueblood.com';
+          };
+          document.body.ontouchstart = function () {
+            window.location.href = 'https://owentrueblood.com';
+          };
+        </script>
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-89035518-3', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </body>
+</html>
